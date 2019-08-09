@@ -144,6 +144,15 @@ def weights_biases():
             data = parameters[str(wanted_parameter)].detach()
             saving_textfile(data,False)
             break
+        elif wanted_parameter[-4:] == 'bias':
+            while(True):
+                ith_bias_ith_layer, end = input('Enter the bias range: \n').split()
+                if end == 'x':
+                    break
+                else:
+                    print('\n')
+                    print(parameters[wanted_parameter][int(ith_bias_ith_layer):int(end)].detach())
+                    print('\n')
         else:
             ith_node = input('Enter the node number: \n')
             while(True):
