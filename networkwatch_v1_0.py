@@ -38,7 +38,7 @@ def test(test_set,loss_func):
     with torch.no_grad():
         for index, (data, truth) in enumerate(test_set):
             output = network(data)
-            test_loss = loss_func(output[0], truth, size_average = False)
+            test_loss = loss_func(output[0], truth)
             total_test_loss += test_loss.item()
             pred = output[0].data.max(1, keepdim = True)[1]
             total_correct += pred.eq(truth.data.view_as(pred)).sum()
