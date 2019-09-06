@@ -72,6 +72,19 @@ def layer_visuals(layer_num,data_results,ith):
         except:
             print('Unexpected Error: ' + sys.exc_info()[2] + '\n')
 
+def layer_loss_analysis(layer_num,data_results,loss_func):
+    chosen_layer = data_results[0][layer_num]
+    print('The dimensions of the layer: ' + str(chosen_layer.shape) +'\n')
+    try:
+        if len(chosen_layer.shape) == 2:
+            layer = torch.nn.functional.log_softmax(chosen_layer, dim=1)
+            loss = loss_func(layer, data_results[1])
+            print('Layer Number: {}, Loss: {:.6f}\n'.format(layer_num, loss)) 
+        else:
+            print('Invalid')
+    except:
+        print('There is a problem with the information you entered: ' + sys.exc_info()[2] + '\n')
+
 def accuracy_individual_classes(network,classes,test_set):
     try:
         class_correct = list(0. for i in range(len(classes)))
