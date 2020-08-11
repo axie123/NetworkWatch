@@ -1,0 +1,27 @@
+<!-- The info on the home page.-->
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Home</title>
+{% endblock %}
+
+{% block body %}
+<br>
+<h1>Home Page</h1>
+<br>
+<main role="main">
+    <div class="jumbotron">
+        <div class="col-sm-8 mx-auto">
+            <h1>Welcome</h1>
+            <p>Welcome to NetView v2.0/LayerVision, a deep learning UI to help learners, researchers, and data scientist
+                to organize their models and view their stats.
+            </p>
+            <p>You can review all the models in models tab.</p>
+            <p>
+                <a class="btn btn-primary" href="/posts" role="button">View Models&raquo;</a>
+            </p>
+        </div>
+    </div>
+</main>
+{% endblock %}

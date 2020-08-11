@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title>Edit Post</title>
+{% endblock %}
+
+{% block body %} 
+    <h1>Editing Post</h1>
+
+    <hr>
+        <h2>Edit:</h2>
+        <form action='/posts/edit/{{post.id}}' method='POST'>
+            <label for="model_name">Model Name</label>
+            <input class="form-control" type="text" name='model_name' id='model_name' value="{{ post.model_name }}" aria-label="Model Name">
+            <br>
+            <label for="model_type">Model Type</label>
+            <input class="form-control" type="text" name='model_type' id='model_type' value="{{ post.model_type }}" aria-label="Model Type">
+            <br>
+            <label for="creator">Creator</label>
+            <input class="form-control" type="text" name='creator' id='creator' value="{{ post.creator }}" aria-label="Creator">
+            <br>
+            <label for="description">Model Description</label>
+            <textarea class="form-control" name='description' id='description' rows="3">{{ post.description }}</textarea>
+            <br>
+            <input type='submit' value='Save'>
+        </form>
+    <hr>
+{% endblock %}
