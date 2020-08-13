@@ -1,0 +1,37 @@
+<!--Models Page-->
+
+{% extends 'base.html' %}
+
+{% block head %}
+<title>Models</title> 
+{% endblock %}
+
+{% block body %}
+<br>
+<div>
+    <h1 style="display:inline">All Models</h1>
+    <a style="display:inline" class="btn btn-success float-right" href="/models/new" >+ New Model</a>
+</div>
+    <hr>
+
+    {% for model in models %}
+        <h2>{{ model.model_name }}</h2>
+        <h5>{{ model.model_type }}</h5>
+        {% if model.creator %}
+            <small> Created by {{ model.creator }} on {{ model.date_posted }}</small>
+        {% else %}
+            <small> Created by Unknown on {{ model.date_posted }}</small>
+        {% endif %}
+        <br>
+        <br>
+        <p style="white-space:pre-wrap">{{ model.description }}</p>
+        <br>
+        <a class="btn btn-danger" href='/models/delete/{{model.id}}'>Delete</a>
+        <a class="btn btn-primary" href='/models/edit/{{model.id}}'>Edit</a>
+        <a class="btn btn-warning" href='/models/view/{{model.id}}'>View</a>
+        <br>
+        <hr>
+        <br>
+    {% endfor%}
+
+{% endblock %}
