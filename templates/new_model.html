@@ -1,0 +1,94 @@
+{% extends 'base.html' %}
+
+{% block head %} 
+    <title>New Model</title>
+{% endblock %}
+
+{% block body %} 
+    <h1>New Model</h1>
+
+    <hr>
+        <h2>Create New DL Model:</h2>
+        <form action='/models' method='POST'>
+            <label for="model_name">Model Name</label>
+            <input class="form-control" type="text" name='model_name' id='model_name' placeholder="Model Name" aria-label="Model Name">
+            <br>
+            <label for="model_type">Model Type</label>
+            <input class="form-control" type="text" name='model_type' id='model_type' placeholder="Model Type" aria-label="Model Type">
+            <br>
+            <label for="creator">Creator</label>
+            <input class="form-control" type="text" name='creator' id='creator' placeholder="Creator" aria-label="Creator">
+            <br>
+            <label for="description">Model Description</label>
+            <textarea class="form-control" name='description' id='description' rows="3"></textarea>
+            <br>
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="train_ratio">Train Ratio</label>
+                    <input class="text" type="number" step="0.01" name='train_ratio' id='train_ratio' placeholder="Train Ratio" aria-label="Train Ratio">
+                </div>
+                <div class="col">
+                    <label for="test_ratio">Test Ratio</label>
+                    <input class="text" type="number" step="0.01" name='test_ratio' id='test_ratio' placeholder="Test Ratio" aria-label="Test Ratio">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="train_batch_size">Training Batch Size</label>
+                    <input class="text" type="number" step="1" name='train_batch_size' id='train_batch_size' placeholder="Training Batch Size" aria-label="Training Batch Size">
+                </div>
+                <div class="col">
+                    <label for="test_batch_size">Test Batch Size</label>
+                    <input class="text" type="number" step="1" name='test_batch_size' id='test_batch_size' placeholder="Test Batch Size" aria-label="Test Batch Size">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col">
+                    <label for="epochs">Epochs</label>
+                    <br>
+                    <input class="text" type="number" step="1" name='epochs' id='epochs' placeholder="Epochs" aria-label="Epochs">
+                </div>
+                <div class="col">
+                    <label for="lr">Learning Rate</label>
+                    <input class="text" type="number" step="0.01" name='lr' id='lr' placeholder="Learning Rate" aria-label="Learning Rate">
+                </div>
+                <div class="col">
+                    <label for="mom">Momentum</label>
+                    <input class="text" type="number" step="0.01" name='mom' id='mom' placeholder="Momentum" aria-label="Momentum">
+                </div>
+                <div class="col">
+                    <label for="reg">Regularization</label>
+                    <input class="text" type="number" step="0.01" name='reg' id='reg' placeholder="Regularization" aria-label="Regularization">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col">
+                    <label for="loss_func">Loss Function</label>
+                    <br>
+                    <input class="text" type="text" name='loss_func' id='loss_func' placeholder="Loss Function" aria-label="Loss Function">                   
+                </div>
+                <div class="col">
+                    <label for="opt">Optimizer</label>
+                    <br>
+                    <input class="text" type="text" name='opt' id='opt' placeholder="Optimizer" aria-label="Optimizer">
+                </div>
+                <div class="col">
+                    <label for="rdm_seed">Random Seed</label>
+                    <input class="text" type="number" step="1" name='rdm_seed' id='rdm_seed' placeholder="Random Seed" aria-label="Random Seed">
+                </div>
+                <div class="col">
+                    <label for="log">Log Interval</label>
+                    <input class="text" type="number" step="1" name='log' id='log' placeholder="Log Interval" aria-label="Log Interval">
+                </div>
+            </div>
+            <br>
+            <label for="opt_args">Opt Args</label>
+            <input class="form-control" type="text" name='opt_args' id='opt_args' placeholder="Opt Args" aria-label="Opt Args">
+            <br>
+            <input type='submit' value='Create'>
+        </form>
+    <hr>
+{% endblock %}
