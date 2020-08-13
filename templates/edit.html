@@ -1,26 +1,91 @@
 {% extends 'base.html' %}
 
 {% block head %} 
-    <title>Edit Post</title>
+    <title>Edit Model</title>
 {% endblock %}
 
 {% block body %} 
-    <h1>Editing Post</h1>
+    <h1>Editing Model</h1>
 
     <hr>
         <h2>Edit:</h2>
-        <form action='/posts/edit/{{post.id}}' method='POST'>
+        <form action='/models/edit/{{model.id}}' method='POST'>
             <label for="model_name">Model Name</label>
-            <input class="form-control" type="text" name='model_name' id='model_name' value="{{ post.model_name }}" aria-label="Model Name">
+            <input class="form-control" type="text" name='model_name' id='model_name' value="{{ model.model_name }}" aria-label="Model Name">
             <br>
             <label for="model_type">Model Type</label>
-            <input class="form-control" type="text" name='model_type' id='model_type' value="{{ post.model_type }}" aria-label="Model Type">
+            <input class="form-control" type="text" name='model_type' id='model_type' value="{{ model.model_type }}" aria-label="Model Type">
             <br>
             <label for="creator">Creator</label>
-            <input class="form-control" type="text" name='creator' id='creator' value="{{ post.creator }}" aria-label="Creator">
+            <input class="form-control" type="text" name='creator' id='creator' value="{{ model.creator }}" aria-label="Creator">
             <br>
             <label for="description">Model Description</label>
-            <textarea class="form-control" name='description' id='description' rows="3">{{ post.description }}</textarea>
+            <textarea class="form-control" name='description' id='description' rows="3">{{ model.description }}</textarea>
+            
+            <div class="form-row">
+                <div class="col">
+                    <label for="train_ratio">Train Ratio</label>
+                    <input class="text" type="number" step="0.01" name='train_ratio' id='train_ratio' value="{{ model.train_ratio }}" aria-label="Train Ratio">
+                </div>
+                <div class="col">
+                    <label for="test_ratio">Test Ratio</label>
+                    <input class="text" type="number" step="0.01" name='test_ratio' id='test_ratio' value="{{ model.test_ratio }}" aria-label="Test Ratio">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col">
+                    <label for="train_batch_size">Training Batch Size</label>
+                    <input class="text" type="number" step="1" name='train_batch_size' id='train_batch_size' value="{{ model.train_batch_size }}" aria-label="Training Batch Size">
+                </div>
+                <div class="col">
+                    <label for="test_batch_size">Test Batch Size</label>
+                    <input class="text" type="number" step="1" name='test_batch_size' id='test_batch_size' value="{{ model.test_batch_size }}" aria-label="Test Batch Size">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col">
+                    <label for="epochs">Epochs</label>
+                    <br>
+                    <input class="text" type="number" step="1" name='epochs' id='epochs' value="{{ model.epochs }}" aria-label="Epochs">
+                </div>
+                <div class="col">
+                    <label for="lr">Learning Rate</label>
+                    <input class="text" type="number" step="0.01" name='lr' id='lr' value="{{ model.lr }}" aria-label="Learning Rate">
+                </div>
+                <div class="col">
+                    <label for="mom">Momentum</label>
+                    <input class="text" type="number" step="0.01" name='mom' id='mom' value="{{ model.mom }}" aria-label="Momentum">
+                </div>
+                <div class="col">
+                    <label for="reg">Regularization</label>
+                    <input class="text" type="number" step="0.01" name='reg' id='reg' value="{{ model.reg }}" aria-label="Regularization">
+                </div>
+            </div>
+            <br>
+            <div class="form-row">
+                <div class="col">
+                    <label for="loss_func">Loss Function</label>
+                    <br>
+                    <input class="text" type="text" name='loss_func' id='loss_func' value="{{ model.loss_func }}" aria-label="Loss Function">                   
+                </div>
+                <div class="col">
+                    <label for="opt">Optimizer</label>
+                    <br>
+                    <input class="text" type="text" name='opt' id='opt' value="{{ model.opt }}" aria-label="Optimizer"> 
+                </div>
+                <div class="col">
+                    <label for="rdm_seed">Random Seed</label>
+                    <input class="text" type="number" step="1" name='rdm_seed' id='rdm_seed' value="{{ model.rdm_seed }}" aria-label="Random Seed">
+                </div>
+                <div class="col">
+                    <label for="log">Log Interval</label>
+                    <input class="text" type="number" step="1" name='log' id='log' value="{{ model.log }}" aria-label="Log Interval">
+                </div>
+            </div>
+            <br>
+            <label for="opt_args">Opt Args</label>
+            <input class="form-control" type="text" name='opt_args' id='opt_args' value="{{ model.opt_args }}" aria-label="Opt Args">
             <br>
             <input type='submit' value='Save'>
         </form>
