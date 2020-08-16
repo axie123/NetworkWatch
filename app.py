@@ -70,9 +70,11 @@ def models():
         all_models = ModelLog.query.order_by(ModelLog.date_posted).all()
         return render_template('models.html', models=all_models)
 
-@app.route('/models/view')
-def view():
-    return render_template('view_model.html')
+@app.route('/models/view/<int:id>', methods=['GET'])
+def view(id):
+    if request.method == 'GET':
+        model = ModelLog.query.get_or_404(id)
+        return render_template('view_model.html', model=model)
 
 @app.route('/models/delete/<int:id>')
 def delete(id):
