@@ -76,6 +76,24 @@ def view(id):
         model = ModelLog.query.get_or_404(id)
         return render_template('view_model.html', model=model)
 
+@app.route('/models/view/<int:id>/testing_loss', methods=['GET'])
+def view_testing_loss(id):
+    if request.method == 'GET':
+        model = ModelLog.query.get_or_404(id)
+        return render_template('view_model_testl.html', model=model)
+
+@app.route('/models/view/<int:id>/train_acc', methods=['GET'])
+def view_train_acc(id):
+    if request.method == 'GET':
+        model = ModelLog.query.get_or_404(id)
+        return render_template('view_model_traina.html', model=model)
+
+@app.route('/models/view/<int:id>/test_acc', methods=['GET'])
+def view_test_acc(id):
+    if request.method == 'GET':
+        model = ModelLog.query.get_or_404(id)
+        return render_template('view_model_testa.html', model=model)
+
 @app.route('/models/delete/<int:id>')
 def delete(id):
     model = ModelLog.query.get_or_404(id)
