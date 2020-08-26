@@ -1,0 +1,28 @@
+.header {
+    width: 99%;
+    height: 100px;
+    position: fixed;
+    background-color: lightgreen;
+}
+
+.menu {
+    width: 550px;
+    height: 80%;
+    position: fixed;
+    margin-top: 20px;
+    margin-bottom: 100px;
+    margin-left: 500px;
+    top: 150px;
+    max-height: 750px;
+    border-radius: 5px;
+    overflow: scroll;
+    z-index: 2;
+    background-color: #1acfc0;
+    font-family: "Consolas", Sans-serif;
+    border-radius: 5px;
+}
+
+.titles {
+    margin-left: 15px;
+    font-family: "Consolas", Sans-serif;
+}

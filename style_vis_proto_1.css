@@ -1,0 +1,69 @@
+.model_intro {
+    width: 550px;
+    height: 150px;
+    position: fixed;
+    margin: 0px;
+    border-radius: 5px;
+    z-index: 3;
+    background-color:  rgb(22, 150, 201);
+    font-family: "Consolas", Sans-serif;
+}
+
+.model_info {
+    width: 550px;
+    height: 80%;
+    position: fixed;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    top: 150px;
+    max-height: 750px;
+    border-radius: 5px;
+    overflow: scroll;
+    z-index: 2;
+    background-color: #1acfc0;
+    font-family: "Consolas", Sans-serif;
+    border-radius: 5px;
+}
+
+.display_background {
+    width: 100%;
+    height: 98%;
+    position: fixed;
+    left: 550px;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    max-width: 925px;
+    max-height: 1000px;
+    z-index: 1;
+    background-color: #a0eee7;
+    font-family: "Consolas", Sans-serif;
+}
+
+.model_name {
+    position: fixed;
+    margin-left: 20px;
+}
+
+.model_type {
+    position: relative;
+    margin-left: 300px;
+    margin-top: 27px;
+}
+
+.model_date {
+    position: relative;
+    margin-left: 20px;
+}
+.data {
+    margin-top: 15px;
+    margin-left: 15px;
+    max-width: 500px;
+    border-radius: 5px;
+    padding: 3px;
+    background-color: #a0eee7;
+}
+
+.data_words {
+    margin-left: 15px;
+}
