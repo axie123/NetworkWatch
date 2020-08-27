@@ -137,14 +137,15 @@
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
+      var test_interval = {{data.test_interval|tojson}}
+      var test_acc = {{data.test_acc|tojson}}
       var ctx = document.getElementById("myChart");
-      var ctx2 = document.getElementById("myChart2");
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: [1, 50, 100, 150, 200, 250, 300],
+          labels: test_interval,
           datasets: [{
-            data: [15339, 0, 10483, 7503, 5089, 3092, 1234],
+            data: test_acc,
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
