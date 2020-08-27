@@ -1,4 +1,6 @@
 import time as time
+from model import evaluation
+from model import name
 
 tr_interval = [1, 50, 100, 150, 200, 250, 300]
 tt_interval = [1, 50, 100, 150, 200, 250, 300]
@@ -61,19 +63,6 @@ class running_metrics:
         self.model_evals[name]['testing_validation'].append(acc)
         self.model_evals[name]['testing_time'] += time
 
-import plotly.graph_objects as go
-
-fig = go.Figure()
-class visualize:
-    def add_line(x, y, label, color, width):
-        fig.add_trace(go.Scatter(x=x, y=y, mode='lines', name=label, line=dict(color=color, width=width)))
-
-    def add_line_marker(x, y, label, color, width):
-        fig.add_trace(go.Scatter(x=x, y=y, mode='lines+markers', name=label))
-
-    def add_marker(x, y, label, color, width):
-        fig.add_trace(go.Scatter(x=x, y=y, mode='markers', name=label))
-
 class running_parameters:
     def __init__(self):
         self.training_grad = []
@@ -86,3 +75,9 @@ class running_parameters:
             para.backward()
             grad_list(parameter.grad)
         return grad_list
+
+
+tr_loss = evaluation.eval_package(name).model_evals[name]['training_loss']
+tt_loss = evaluation.eval_package(name).model_evals[name]['testing_loss']
+tr_acc = evaluation.eval_package(name).model_evals[name]['training_accuracy']
+tt_acc = evaluation.eval_package(name).model_evals[name]['testing_accuracy']
