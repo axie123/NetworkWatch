@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, redirect
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
+import training
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models.db'
@@ -74,25 +75,29 @@ def models():
 def view(id):
     if request.method == 'GET':
         model = ModelLog.query.get_or_404(id)
-        return render_template('view_model.html', model=model)
+        data = {'training_interval':training.tr_interval,'training_loss': training.tr_loss}
+        return render_template('view_model.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/testing_loss', methods=['GET'])
 def view_testing_loss(id):
     if request.method == 'GET':
         model = ModelLog.query.get_or_404(id)
-        return render_template('view_model_testl.html', model=model)
+        data = {'test_interval':training.tt_interval,'test_loss': training.tt_loss}
+        return render_template('view_model_testl.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/train_acc', methods=['GET'])
 def view_train_acc(id):
     if request.method == 'GET':
         model = ModelLog.query.get_or_404(id)
-        return render_template('view_model_traina.html', model=model)
+        data = {'training_interval':training.tr_interval,'training_acc': training.tr_acc}
+        return render_template('view_model_traina.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/test_acc', methods=['GET'])
 def view_test_acc(id):
     if request.method == 'GET':
         model = ModelLog.query.get_or_404(id)
-        return render_template('view_model_testa.html', model=model)
+        data = {'test_interval':training.tt_interval,'test_acc': training.tt_acc}
+        return render_template('view_model_testa.html', model=model, data=data)
 
 @app.route('/models/delete/<int:id>')
 def delete(id):
@@ -162,6 +167,11 @@ def new_model():
     else:
         return render_template('new_model.html')
 
+@app.route('/models/view/<int:id>', methods=['GET'])
+def send_params(id):
+    if request.method == 'GET':
+        model_num = id
+        return model_num
 
 if __name__ == "__main__":
     app.run(debug=True)
