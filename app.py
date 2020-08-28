@@ -3,11 +3,12 @@ from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime
 import training
 
-app = Flask(__name__)
+app = Flask(__name__) # Defines the working of the app.
+# Initiates the database needed to store the hyperparameters.
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models.db'
 db = SQLAlchemy(app)
 
-# The code that lays out the database for my UI.
+# The code that lays out the database for my app.
 class ModelLog(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     model_name = db.Column(db.String(50), nullable=False)
@@ -34,10 +35,12 @@ class ModelLog(db.Model):
     def __repr__(self):
         return 'Model number ' + str(self.id)
 
+# The home page of the application.
 @app.route('/')
 def index():
     return render_template('index.html')
 
+# The page where all the models created are displayed.
 @app.route('/models', methods=['GET', 'POST'])
 def models():
     if request.method == 'POST':
@@ -71,6 +74,7 @@ def models():
         all_models = ModelLog.query.order_by(ModelLog.date_posted).all()
         return render_template('models.html', models=all_models)
 
+# The viwing page for the training loss of the specific model.
 @app.route('/models/view/<int:id>', methods=['GET'])
 def view(id):
     if request.method == 'GET':
@@ -78,6 +82,7 @@ def view(id):
         data = {'training_interval':training.tr_interval,'training_loss': training.tr_loss}
         return render_template('view_model.html', model=model, data=data)
 
+# The viwing page for the test loss of the specific model.    
 @app.route('/models/view/<int:id>/testing_loss', methods=['GET'])
 def view_testing_loss(id):
     if request.method == 'GET':
@@ -85,6 +90,7 @@ def view_testing_loss(id):
         data = {'test_interval':training.tt_interval,'test_loss': training.tt_loss}
         return render_template('view_model_testl.html', model=model, data=data)
 
+# The viwing page for the training accuracy of the specific model.
 @app.route('/models/view/<int:id>/train_acc', methods=['GET'])
 def view_train_acc(id):
     if request.method == 'GET':
@@ -92,6 +98,7 @@ def view_train_acc(id):
         data = {'training_interval':training.tr_interval,'training_acc': training.tr_acc}
         return render_template('view_model_traina.html', model=model, data=data)
 
+# The viwing page for the test accuracy of the specific model.
 @app.route('/models/view/<int:id>/test_acc', methods=['GET'])
 def view_test_acc(id):
     if request.method == 'GET':
@@ -99,6 +106,7 @@ def view_test_acc(id):
         data = {'test_interval':training.tt_interval,'test_acc': training.tt_acc}
         return render_template('view_model_testa.html', model=model, data=data)
 
+# Helps to delete the model.
 @app.route('/models/delete/<int:id>')
 def delete(id):
     model = ModelLog.query.get_or_404(id)
@@ -106,6 +114,7 @@ def delete(id):
     db.session.commit()
     return redirect('/models')
 
+# Edits the model.
 @app.route('/models/edit/<int:id>', methods=['GET', 'POST'])
 def edit(id):
     model = ModelLog.query.get_or_404(id)
@@ -135,6 +144,7 @@ def edit(id):
     else:
         return render_template('edit.html', model=model)
 
+# Create new model.
 @app.route('/models/new', methods=['GET', 'POST'])
 def new_model():
     if request.method == 'POST':
