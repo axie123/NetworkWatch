@@ -22,11 +22,23 @@ With this application, you are able to:
 To install, you can clone the repository in your specified file on the command prompt:
 
 ```bash
-
+git clone https://github.com/axie123/LayerVision.git
 ```
+or download the zip file and unpack it in the folder.
 
 ## Usage/Running 
 
+To run the program, you need to go into the location of the repo in you computer either on your Linux or Windows Bash/Shell. Once there, type
 
+```bash
+python app.py
+```
+to run. You can also use Anaconda Prompt. After that, go to http://http://127.0.0.1:5000/.
 
 ### Prerequisites
+
+You need the following libraries installed to use this application:
+
+Flask
+SQLAlchemy (Flask)
+PyTorch
