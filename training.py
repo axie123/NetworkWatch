@@ -77,7 +77,7 @@ class running_parameters:
         return grad_list
 
 
-tr_loss = evaluation.eval_package(name).model_evals[name]['training_loss']
-tt_loss = evaluation.eval_package(name).model_evals[name]['testing_loss']
-tr_acc = evaluation.eval_package(name).model_evals[name]['training_accuracy']
-tt_acc = evaluation.eval_package(name).model_evals[name]['testing_accuracy']
+tr_loss = evaluation.eval_package(name)['training_loss']
+tt_loss = evaluation.eval_package(name)['testing_loss']
+tr_acc = evaluation.eval_package(name)['training_accuracy']
+tt_acc = evaluation.eval_package(name)['testing_accuracy']
