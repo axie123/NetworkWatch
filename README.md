@@ -19,16 +19,14 @@ With this application, you are able to:
 
 ## Installation
 
-Each of the projects are already in their compartment folders. To test out a project: download the folders exactly as they are in the repository and keep the files the way they are. It is recommended that you use PyCharm or some other IDE for this. 
+To install, you can clone the repository in your specified file on the command prompt:
+
+```bash
+
+```
 
 ## Usage/Running 
 
-The code for Bayesian optimization is developed on Linux.
 
-It's simple. Just:
-
-```bash
-python3 program_name.py
-```
 
 ### Prerequisites
