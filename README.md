@@ -39,6 +39,8 @@ to run. You can also use Anaconda Prompt. After that, go to http://http://127.0.
 
 You need the following libraries installed to use this application:
 
-Flask
-SQLAlchemy (Flask)
-PyTorch
+* Flask
+* SQLAlchemy (Flask)
+* PyTorch
+
+You can just use the requirements file to download the necessary dependencies.
