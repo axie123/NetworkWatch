@@ -1,8 +1,7 @@
-import app
 import torch
 
-model = app.ModelLog.query.get_or_404(app.model_num)
-print(model)
+#model = app.ModelLog.query.get_or_404(app.model_num)
+#print(model)
 
 class hyperparameter:
     def __init__(self, model):
