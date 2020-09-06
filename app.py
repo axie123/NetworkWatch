@@ -6,7 +6,7 @@ import json
 # Loading the evaluation data.
 content = open('eval_data.txt', 'r')
 content = content.read().splitlines()
-training = json.loads(content[0]) 
+model_eval = json.loads(content[0]) 
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///models.db'
@@ -78,30 +78,46 @@ def models():
 
 @app.route('/models/view/<int:id>', methods=['GET'])
 def view(id):
-    if request.method == 'GET':
+    if request.method == 'GET' and model_eval['id'] == id:
         model = ModelLog.query.get_or_404(id)
-        data = {'training_interval':training['tr_interval'],'training_loss': training['tr_loss']}
+        data = {'training_interval':model_eval['training_interval'],'training_loss': model_eval['training_loss']}
         return render_template('view_model.html', model=model, data=data)
+    else: 
+        return render_template('error.html')
+
+@app.route('/models/view/<int:id>/valid_loss', methods=['GET'])
+def view_valid_loss(id):
+    if request.method == 'GET' and model_eval['id'] == id:
+        model = ModelLog.query.get_or_404(id)
+        data = {'valid_interval':model_eval['validation_interval'],'valid_loss': model_eval['validation_loss']}
+        return render_template('view_model_validl.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/testing_loss', methods=['GET'])
 def view_testing_loss(id):
-    if request.method == 'GET':
+    if request.method == 'GET' and model_eval['id'] == id:
         model = ModelLog.query.get_or_404(id)
-        data = {'test_interval':training['tt_interval'],'test_loss': training['tt_loss']}
+        data = {'test_interval':model_eval['testing_interval'],'test_loss': model_eval['testing_loss']}
         return render_template('view_model_testl.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/train_acc', methods=['GET'])
 def view_train_acc(id):
-    if request.method == 'GET':
+    if request.method == 'GET' and model_eval['id'] == id:
         model = ModelLog.query.get_or_404(id)
-        data = {'training_interval':training['tr_interval'],'training_acc': training['tr_acc']}
+        data = {'training_interval':model_eval['training_interval'],'training_acc': model_eval['training_accuracy']}
         return render_template('view_model_traina.html', model=model, data=data)
+
+@app.route('/models/view/<int:id>/valid_acc', methods=['GET'])
+def view_valid_acc(id):
+    if request.method == 'GET' and model_eval['id'] == id:
+        model = ModelLog.query.get_or_404(id)
+        data = {'valid_interval':model_eval['validation_interval'],'valid_acc': model_eval['validation_accuracy']}
+        return render_template('view_model_valida.html', model=model, data=data)
 
 @app.route('/models/view/<int:id>/test_acc', methods=['GET'])
 def view_test_acc(id):
-    if request.method == 'GET':
+    if request.method == 'GET' and model_eval['id'] == id:
         model = ModelLog.query.get_or_404(id)
-        data = {'test_interval':training['tt_interval'],'test_acc': training['tt_acc']}
+        data = {'test_interval':model_eval['testing_interval'],'test_acc': model_eval['testing_accuracy']}
         return render_template('view_model_testa.html', model=model, data=data)
 
 @app.route('/models/delete/<int:id>')
@@ -171,12 +187,6 @@ def new_model():
         return redirect('/models')
     else:
         return render_template('new_model.html')
-
-@app.route('/models/view/<int:id>', methods=['GET'])
-def send_params(id):
-    if request.method == 'GET':
-        model_num = id
-        return model_num
 
 if __name__ == "__main__":
     app.run(debug=True)
