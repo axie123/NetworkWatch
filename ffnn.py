@@ -114,7 +114,7 @@ for epoch in range(1, n_epochs + 1): # Training with the training set and runnin
   test()
 
 
-model_eval = running_metrics(1)
+model_eval = running_metrics(2)
 model_eval.model_evals['training_interval'] = train_counter
 model_eval.model_evals['testing_interval'] = test_counter
 model_eval.model_evals['training_loss'] = train_losses
