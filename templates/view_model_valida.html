@@ -54,12 +54,6 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="/models/view/{{model.id}}/valid_loss">
-                  <span data-feather="bar-chart-2"></span>
-                  Validation Loss
-                </a>
-              </li>
-              <li class="nav-item">
                 <a class="nav-link" href="/models/view/{{model.id}}/testing_loss">
                   <span data-feather="bar-chart-2"></span>
                   Testing Loss
@@ -92,7 +86,7 @@
             <h1 class="h2">{{model.model_name}}</h1>
           </div>
 
-          <h3 class="h3">Testing Accuracy</h3>
+          <h3 class="h3">Validation Accuracy</h3>
           <canvas class="my-4" id="myChart" width="900" height="380"></canvas>
 
           <h2>Model Stats</h2>
@@ -155,15 +149,15 @@
     <!-- Graphs -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.1/Chart.min.js"></script>
     <script>
-      var test_interval = {{data.test_interval|tojson}}
-      var test_acc = {{data.test_acc|tojson}}
+      var valid_interval = {{data.valid_interval|tojson}}
+      var valid_acc = {{data.valid_acc|tojson}}
       var ctx = document.getElementById("myChart");
       var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-          labels: test_interval,
+          labels: valid_interval,
           datasets: [{
-            data: test_acc,
+            data: valid_acc,
             lineTension: 0,
             backgroundColor: 'transparent',
             borderColor: '#007bff',
