@@ -1,5 +1,8 @@
 # LayerVision
-LayerVision is a type of Machine Learning application that I have been working on to allow data scientists, engineers, and researchers to deploy and keep track of their deep learning models with more ease.
+
+### Update: The packages used as part of this project may not be up to date. 
+
+LayerVision is a type of Machine Learning application that I have been working on to allow data scientists, engineers, and researchers to deploy and keep track of their deep learning models with more ease. In its current state, it is only a proof-of-concept for an application of such sort. 
 
 This version of the application is built on a Flask backend and a HTML & CSS frontend. It will incorporate some elements of what is shown in the previous versions of the application. 
 
